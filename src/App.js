@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { nanoid } from "nanoid";
 
 import "./App.css";
 
@@ -20,26 +19,22 @@ export default class App extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
-    const btnSectionName = "Please, leave feedback";
-    const infoSectionName = "Statistics";
     const totalArray = Object.values(this.state);
     const total = totalArray.reduce(function (sum, current) {
       return sum + current;
     }, 0);
 
     const positivePercentage = Math.round((good / total) * 100);
-    const firstSectionId = nanoid();
-    const secondSectionId = nanoid();
 
     return (
       <div>
-        <Section key={firstSectionId} title={btnSectionName}>
+        <Section title="Please, leave feedback">
           <FeedbackOptions
             options={this.state}
             leaveFeedback={this.incrementFeedback}
           />
         </Section>
-        <Section key={secondSectionId} title={infoSectionName}>
+        <Section title="Statistics">
           <Statistics
             good={good}
             neutral={neutral}
